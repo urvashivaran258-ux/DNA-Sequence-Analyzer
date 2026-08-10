@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>DNA Sequence Analyzer</h1>
+    <p>Analyze Your DNA Sequence</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="analyzer.html">Analyzer</a>
+    <a href="about.html">About</a>
+    
+</nav>
+
+<div class="hero">
+
+    <h2>DNA Analyzer</h2>
+
+    <p>Enter a DNA sequence using only A, T, G and C.</p>
+
+    <textarea id="dna" rows="6" cols="40"
+    placeholder="Example: ATGCGATTA"></textarea>
+
+    <br><br>
+
+    <button onclick="analyzeDNA()" class="btn">
+        Analyze
+    </button>
+
+    <button onclick="clearData()" class="btn">
+        Clear
+    </button>
+
+    <br><br>
+
+    <div id="result"></div>
+
+</div>
+
+<footer>
+    <p>© 2026 DNA Sequence Analyzer</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
