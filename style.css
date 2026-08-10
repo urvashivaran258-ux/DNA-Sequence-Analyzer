@@ -1,143 +1,282 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:#eef4ff;
-    color:#333;
+body {
+    font-family: Arial, sans-serif;
+    background: #eef5ff;
+    color: #222;
+    line-height: 1.6;
 }
 
-header{
-    background:linear-gradient(135deg,#1565c0,#0d47a1);
-    color:#fff;
-    text-align:center;
-    padding:35px 15px;
+/* Header */
+.header {
+    background: #1769c2;
+    color: white;
+    text-align: center;
+    padding: 40px 15px;
 }
 
-header h1{
-    font-size:45px;
+.header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
-header p{
-    margin-top:10px;
-    font-size:20px;
+.header p {
+    font-size: 20px;
 }
 
-nav{
-    background:#0d47a1;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+/* Navigation */
+.navbar {
+    background: #0d47a1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    padding:15px 20px;
-    font-size:20px;
-    font-weight:bold;
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 18px 25px;
 }
 
-nav a:hover{
-    background:#1976d2;
+.navbar a:hover {
+    background: #1565c0;
 }
 
-.container{
-    max-width:900px;
-    margin:30px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+/* Main */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px;
 }
 
-h2{
-    color:#1565c0;
-    margin-bottom:15px;
+/* Hero */
+.hero {
+    background: white;
+    text-align: center;
+    padding: 45px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-textarea{
-    width:100%;
-    height:170px;
-    border:2px solid #1565c0;
-    border-radius:10px;
-    padding:15px;
-    font-size:18px;
-    resize:none;
+.dna-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
 }
 
-button{
-    background:#1565c0;
-    color:white;
-    border:none;
-    padding:14px 25px;
-    margin:10px 5px;
-    border-radius:8px;
-    font-size:18px;
-    cursor:pointer;
-    transition:.3s;
+.hero h2 {
+    color: #0d47a1;
+    font-size: 32px;
+    margin-bottom: 15px;
 }
 
-button:hover{
-    background:#0d47a1;
-    transform:scale(1.05);
+.hero p {
+    font-size: 18px;
+    margin: 8px auto;
+    max-width: 750px;
 }
 
-.result{
-    margin-top:25px;
-    background:#f8f9fa;
-    border-left:6px solid #1565c0;
-    padding:20px;
-    border-radius:10px;
-    font-size:20px;
+/* Buttons */
+.button,
+button {
+    display: inline-block;
+    background: #1769c2;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    margin-top: 22px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-img{
-    max-width:100%;
-    display:block;
-    margin:20px auto;
-    border-radius:10px;
-    img{
-    display:block;
-    margin:20px auto;
-    width:250px;
-    height:auto;
-}
+.button:hover,
+button:hover {
+    background: #0d47a1;
 }
 
-footer{
-    margin-top:40px;
-    background:#1565c0;
-    color:white;
-    text-align:center;
-    padding:20px;
-    font-size:18px;
+/* Features */
+.features {
+    margin-top: 40px;
+    text-align: center;
 }
 
-@media(max-width:768px){
-
-header h1{
-font-size:34px;
+.features h2 {
+    color: #0d47a1;
+    margin-bottom: 25px;
 }
 
-header p{
-font-size:18px;
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-nav a{
-font-size:18px;
-padding:12px;
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.container{
-margin:15px;
-padding:20px;
+.card-icon {
+    font-size: 40px;
 }
 
-button{
-width:100%;
+.card h3 {
+    color: #1769c2;
+    margin: 10px 0;
 }
+
+/* Analyzer */
+.analyzer-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.analyzer-section h2,
+.content-section h2 {
+    color: #0d47a1;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.instruction {
+    font-size: 18px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid #1769c2;
+    border-radius: 10px;
+    font-size: 18px;
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+.button-group button {
+    flex: 1;
+}
+
+/* Result */
+.result-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8fbff;
+    border-left: 5px solid #1769c2;
+    border-radius: 10px;
+}
+
+.result-box h2 {
+    color: #0d47a1;
+    margin-bottom: 15px;
+}
+
+.result-item {
+    font-size: 18px;
+    padding: 8px 0;
+}
+
+.gc-at {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1769c2;
+    margin-top: 15px;
+}
+
+/* About / Contact */
+.content-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.content-section p {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.content-section h3 {
+    color: #1769c2;
+    margin-top: 25px;
+}
+
+.content-section ul {
+    margin: 10px 0 0 25px;
+    font-size: 18px;
+}
+
+.student-info {
+    margin-top: 20px;
+}
+
+/* Footer */
+.footer {
+    background: #1769c2;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 40px;
+}
+
+.footer p {
+    font-size: 17px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header p {
+        font-size: 17px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        padding: 14px 15px;
+    }
+
+    .container {
+        padding: 20px 12px;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 170px;
+    }
 }

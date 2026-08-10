@@ -8,44 +8,47 @@
 </head>
 <body>
 
-<header>
+<header class="header">
     <h1>DNA Sequence Analyzer</h1>
     <p>Analyze Your DNA Sequence</p>
 </header>
 
-<nav>
+<nav class="navbar">
     <a href="index.html">Home</a>
     <a href="analyzer.html">Analyzer</a>
     <a href="about.html">About</a>
-    
+    <a href="contact.html">Contact</a>
 </nav>
 
-<div class="hero">
+<main class="container">
 
-    <h2>DNA Analyzer</h2>
+    <section class="analyzer-section">
 
-    <p>Enter a DNA sequence using only A, T, G and C.</p>
+        <h2>DNA Analyzer</h2>
 
-    <textarea id="dna" rows="6" cols="40"
-    placeholder="Example: ATGCGATTA"></textarea>
+        <p class="instruction">
+            Enter a DNA sequence using only A, T, G and C.
+        </p>
 
-    <br><br>
+        <textarea
+            id="dnaSequence"
+            placeholder="Example: ATGCGATTA">
+        </textarea>
 
-    <button onclick="analyzeDNA()" class="btn">
-        Analyze
-    </button>
+        <div class="button-group">
+            <button onclick="analyzeDNA()">Analyze</button>
+            <button onclick="clearDNA()">Clear</button>
+        </div>
 
-    <button onclick="clearData()" class="btn">
-        Clear
-    </button>
+        <div id="result" class="result-box">
+            <p>Enter a DNA sequence and click <b>Analyze</b>.</p>
+        </div>
 
-    <br><br>
+    </section>
 
-    <div id="result"></div>
+</main>
 
-</div>
-
-<footer>
+<footer class="footer">
     <p>© 2026 DNA Sequence Analyzer</p>
 </footer>
 
