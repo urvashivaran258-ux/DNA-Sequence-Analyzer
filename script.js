@@ -489,3 +489,9 @@ if (feedbackForm) {
         feedbackForm.reset();
     });
 }
+
+const feedbackForm = document.getElementById("feedbackForm");
+
+if (feedbackForm) {
+    // ...
+}
