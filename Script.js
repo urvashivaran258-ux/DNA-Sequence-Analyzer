@@ -1,91 +1,312 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const sequenceInput = document.getElementById("dnaSequence");
-    const analyzeButton = document.getElementById("analyzeButton");
-    const clearButton = document.getElementById("clearButton");
+    const sequenceInput =
+        document.getElementById("dnaSequence");
+
+    const analyzeButton =
+        document.getElementById("analyzeButton");
+
+    const sampleButton =
+        document.getElementById("sampleButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const sequenceError =
+        document.getElementById("sequenceError");
+
+    const result =
+        document.getElementById("result");
+
+    const reverseComplement =
+        document.getElementById("reverseComplement");
+
+    const copyButton =
+        document.getElementById("copyComplementButton");
+
+    const copyMessage =
+        document.getElementById("copyMessage");
+
+
+    const sampleSequence =
+        "ATGCGTACCGTAGCTAGCTAGGCTAACGTTAGCGATCGATCGGATCC";
+
+
+    function cleanSequence(sequence) {
+
+        return sequence
+            .replace(/\s+/g, "")
+            .toUpperCase();
+
+    }
+
+
+    function validDNA(sequence) {
+
+        return /^[ATGC]+$/.test(sequence);
+
+    }
+
+
+    function countBase(sequence, base) {
+
+        return [...sequence]
+            .filter(function (letter) {
+                return letter === base;
+            }).length;
+
+    }
+
+
+    function getReverseComplement(sequence) {
+
+        const complement = {
+
+            A: "T",
+            T: "A",
+            G: "C",
+            C: "G"
+
+        };
+
+        return sequence
+            .split("")
+            .reverse()
+            .map(function (base) {
+                return complement[base];
+            })
+            .join("");
+
+    }
+
 
     function analyzeDNA() {
 
-        if (!sequenceInput) return;
+        let sequence =
+            cleanSequence(sequenceInput.value);
 
-        const sequence = sequenceInput.value
-            .replace(/\s/g, "")
-            .toUpperCase();
 
-        if (sequence === "") {
-            alert("Please enter a DNA sequence.");
+        if (sequence.length === 0) {
+
+            sequenceError.textContent =
+                "Please enter a DNA sequence.";
+
+            sequenceError.hidden = false;
+
             return;
         }
 
-        if (!/^[ATGC]+$/.test(sequence)) {
-            alert("Invalid DNA sequence! Use only A, T, G and C.");
+
+        if (!validDNA(sequence)) {
+
+            sequenceError.textContent =
+                "Invalid DNA sequence! Use only A, T, G and C.";
+
+            sequenceError.hidden = false;
+
             return;
         }
+
+
+        sequenceError.hidden = true;
+
+        sequenceInput.value = sequence;
+
 
         const length = sequence.length;
 
-        const a = (sequence.match(/A/g) || []).length;
-        const t = (sequence.match(/T/g) || []).length;
-        const g = (sequence.match(/G/g) || []).length;
-        const c = (sequence.match(/C/g) || []).length;
 
-        const aPercent = (a / length) * 100;
-        const tPercent = (t / length) * 100;
-        const gPercent = (g / length) * 100;
-        const cPercent = (c / length) * 100;
+        const A = countBase(sequence, "A");
 
-        const gcContent = ((g + c) / length) * 100;
+        const T = countBase(sequence, "T");
 
-        const result = document.getElementById("result");
+        const G = countBase(sequence, "G");
 
-        if (result) {
-            result.innerHTML = `
-                <h3>Analysis Result</h3>
+        const C = countBase(sequence, "C");
 
-                <p><strong>Sequence Length:</strong> ${length}</p>
 
-                <p><strong>A:</strong> ${a} 
-                (${aPercent.toFixed(2)}%)</p>
+        const APercent =
+            (A / length) * 100;
 
-                <p><strong>T:</strong> ${t} 
-                (${tPercent.toFixed(2)}%)</p>
+        const TPercent =
+            (T / length) * 100;
 
-                <p><strong>G:</strong> ${g} 
-                (${gPercent.toFixed(2)}%)</p>
+        const GPercent =
+            (G / length) * 100;
 
-                <p><strong>C:</strong> ${c} 
-                (${cPercent.toFixed(2)}%)</p>
+        const CPercent =
+            (C / length) * 100;
 
-                <p><strong>GC Content:</strong> 
-                ${gcContent.toFixed(2)}%</p>
 
-                <p><strong>AT Content:</strong> 
-                ${(100 - gcContent).toFixed(2)}%</p>
-            `;
+        const GC =
+            ((G + C) / length) * 100;
+
+        const AT =
+            ((A + T) / length) * 100;
+
+
+        let gcLevel;
+
+
+        if (GC < 40) {
+
+            gcLevel = "Low";
+
+        } else if (GC <= 60) {
+
+            gcLevel = "Moderate";
+
+        } else {
+
+            gcLevel = "High";
+
         }
+
+
+        document.getElementById("sequenceLength")
+            .textContent = length;
+
+        document.getElementById("gcContent")
+            .textContent = GC.toFixed(2) + "%";
+
+        document.getElementById("atContent")
+            .textContent = AT.toFixed(2) + "%";
+
+        document.getElementById("gcCategory")
+            .textContent = gcLevel;
+
+
+        document.getElementById("aCount")
+            .textContent =
+            A + " (" + APercent.toFixed(2) + "%)";
+
+
+        document.getElementById("tCount")
+            .textContent =
+            T + " (" + TPercent.toFixed(2) + "%)";
+
+
+        document.getElementById("gCount")
+            .textContent =
+            G + " (" + GPercent.toFixed(2) + "%)";
+
+
+        document.getElementById("cCount")
+            .textContent =
+            C + " (" + CPercent.toFixed(2) + "%)";
+
+
+        reverseComplement.textContent =
+            getReverseComplement(sequence);
+
     }
+
 
     function clearDNA() {
 
-        if (sequenceInput) {
-            sequenceInput.value = "";
+        sequenceInput.value = "";
+
+        sequenceError.hidden = true;
+
+        document.getElementById("sequenceLength")
+            .textContent = "—";
+
+        document.getElementById("gcContent")
+            .textContent = "—";
+
+        document.getElementById("atContent")
+            .textContent = "—";
+
+        document.getElementById("gcCategory")
+            .textContent = "—";
+
+        document.getElementById("aCount")
+            .textContent = "0";
+
+        document.getElementById("tCount")
+            .textContent = "0";
+
+        document.getElementById("gCount")
+            .textContent = "0";
+
+        document.getElementById("cCount")
+            .textContent = "0";
+
+        reverseComplement.textContent =
+            "Your result will appear here.";
+
+        copyMessage.textContent = "";
+
+    }
+
+
+    function loadSample() {
+
+        sequenceInput.value =
+            sampleSequence;
+
+        sequenceError.hidden = true;
+
+    }
+
+
+    async function copyReverseComplement() {
+
+        const text =
+            reverseComplement.textContent;
+
+
+        if (
+            !text ||
+            text === "Your result will appear here."
+        ) {
+
+            copyMessage.textContent =
+                "Analyze a sequence first.";
+
+            return;
+
         }
 
-        const result = document.getElementById("result");
 
-        if (result) {
-            result.innerHTML = `
-                <p>Enter a DNA sequence and click Analyze.</p>
-            `;
+        try {
+
+            await navigator.clipboard.writeText(text);
+
+            copyMessage.textContent =
+                "Copied successfully!";
+
+        } catch (error) {
+
+            copyMessage.textContent =
+                "Copy failed. Please copy manually.";
+
         }
+
     }
 
-    if (analyzeButton) {
-        analyzeButton.addEventListener("click", analyzeDNA);
-    }
 
-    if (clearButton) {
-        clearButton.addEventListener("click", clearDNA);
-    }
+    analyzeButton.addEventListener(
+        "click",
+        analyzeDNA
+    );
+
+
+    clearButton.addEventListener(
+        "click",
+        clearDNA
+    );
+
+
+    sampleButton.addEventListener(
+        "click",
+        loadSample
+    );
+
+
+    copyButton.addEventListener(
+        "click",
+        copyReverseComplement
+    );
 
 });
