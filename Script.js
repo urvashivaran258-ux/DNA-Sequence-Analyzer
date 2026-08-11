@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
+    <button onclick="clearDNA()">Clear</button>
 
     analyzeButton.addEventListener(
         "click",
