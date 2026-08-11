@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback - DNA Sequence Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🧬 DNA Sequence Analyzer</h1>
+    <p>Feedback</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="analyzer.html">Analyzer</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="feedback.html">Feedback</a>
+</nav>
+
+<main>
+
+    <section class="hero">
+
+        <h2>Give Your Feedback</h2>
+
+        <form id="feedbackForm">
+
+            <label for="feedbackName">Name:</label>
+            <input type="text" id="feedbackName"
+                   placeholder="Enter your name" required>
+
+            <br><br>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="">Select rating</option>
+                <option value="5">★★★★★ Excellent</option>
+                <option value="4">★★★★ Very Good</option>
+                <option value="3">★★★ Good</option>
+                <option value="2">★★ Needs Improvement</option>
+                <option value="1">★ Poor</option>
+            </select>
+
+            <br><br>
+
+            <label for="feedbackText">Feedback:</label>
+
+            <textarea id="feedbackText"
+                      rows="5"
+                      placeholder="Write your feedback..."
+                      required></textarea>
+
+            <br><br>
+
+            <button type="submit">Submit Feedback</button>
+
+            <p id="feedbackMessage"></p>
+
+        </form>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 DNA Sequence Analyzer</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
