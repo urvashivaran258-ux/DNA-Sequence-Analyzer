@@ -4,54 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNA Analyzer</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="header">
-    <h1>DNA Sequence Analyzer</h1>
+<header>
+    <h1>🧬 DNA Sequence Analyzer</h1>
     <p>Analyze Your DNA Sequence</p>
 </header>
 
-<nav class="navbar">
+<nav>
     <a href="index.html">Home</a>
     <a href="analyzer.html">Analyzer</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
 </nav>
 
-<main class="container">
+<main>
 
-    <section class="analyzer-section">
+    <section class="analyzer">
 
-        <h2>DNA Analyzer</h2>
+        <h2>DNA Sequence Analyzer</h2>
 
-        <p class="instruction">
-            Enter a DNA sequence using only A, T, G and C.
+        <p>
+            Enter your DNA sequence using only A, T, G and C.
         </p>
 
         <textarea
             id="dnaSequence"
-            placeholder="Example: ATGCGATTA">
+            placeholder="Example: ATGCGTACGTAGCTAGC">
         </textarea>
 
-        <div class="button-group"> <div class="button-group">
-    <button id="analyzeButton">Analyze</button>
-    <button id="clearButton">Clear</button>
-        </div>
-            <button onclick="analyzeDNA()">Analyze</button>
-            <button onclick="clearDNA()">Clear</button>
+        <div class="buttons">
+
+            <button id="analyzeButton">
+                Analyze
+            </button>
+
+            <button id="sampleButton">
+                Sample
+            </button>
+
+            <button id="clearButton" class="clear">
+                Clear
+            </button>
+
         </div>
 
-        <div id="result" class="result-box">
-            <p>Enter a DNA sequence and click <b>Analyze</b>.</p>
+        <p id="sequenceError" class="error" hidden></p>
+
+        <div class="result" id="result">
+
+            <h3>Analysis Result</h3>
+
+            <p>
+                <strong>Sequence Length:</strong>
+                <span id="sequenceLength">—</span>
+            </p>
+
+            <p>
+                <strong>GC Content:</strong>
+                <span id="gcContent">—</span>
+            </p>
+
+            <p>
+                <strong>AT Content:</strong>
+                <span id="atContent">—</span>
+            </p>
+
+            <p>
+                <strong>GC Level:</strong>
+                <span id="gcCategory">—</span>
+            </p>
+
+            <hr>
+
+            <p>
+                <strong>Adenine (A):</strong>
+                <span id="aCount">0</span>
+            </p>
+
+            <p>
+                <strong>Thymine (T):</strong>
+                <span id="tCount">0</span>
+            </p>
+
+            <p>
+                <strong>Guanine (G):</strong>
+                <span id="gCount">0</span>
+            </p>
+
+            <p>
+                <strong>Cytosine (C):</strong>
+                <span id="cCount">0</span>
+            </p>
+
+        </div>
+
+        <div class="result">
+
+            <h3>Reverse Complement</h3>
+
+            <p id="reverseComplement">
+                Your result will appear here.
+            </p>
+
+            <button id="copyComplementButton">
+                Copy Reverse Complement
+            </button>
+
+            <p id="copyMessage"></p>
+
         </div>
 
     </section>
 
 </main>
 
-<footer class="footer">
+<footer>
     <p>© 2026 DNA Sequence Analyzer</p>
 </footer>
 
