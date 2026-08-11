@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - Admin</title>
+<link rel="stylesheet" href="admin-style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🧬 DNA Sequence Analyzer</h1>
+<p>Admin Settings</p>
+</header>
+
+<nav>
+<a href="index.html">Dashboard</a>
+<a href="users.html">Users</a>
+<a href="analysis.html">Analysis</a>
+<a href="feedback.html">Feedback</a>
+<a href="settings.html">Settings</a>
+</nav>
+
+<main>
+
+<section class="admin-info">
+
+<h2>⚙️ Project Settings</h2>
+
+<form id="settingsForm">
+
+<label>Project Name</label>
+<input type="text"
+       id="projectName"
+       value="DNA Sequence Analyzer"
+       required>
+
+<br><br>
+
+<label>Admin Email</label>
+<input type="email"
+       id="adminEmail"
+       value="admin@gmail.com"
+       required>
+
+<br><br>
+
+<label>
+<input type="checkbox" id="notifications" checked>
+ Enable Notifications
+</label>
+
+<br><br>
+
+<button type="submit">Save Settings</button>
+
+<p id="settingsMessage"></p>
+
+</form>
+
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 DNA Sequence Analyzer | Admin Panel</p>
+</footer>
+
+<script>
+document.getElementById("settingsForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    document.getElementById("settingsMessage").textContent =
+        "Settings saved successfully.";
+
+});
+</script>
+
+</body>
+</html>
