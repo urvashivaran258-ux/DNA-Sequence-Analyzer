@@ -1,110 +1,118 @@
-// DNA Sequence Analyzer
+document.addEventListener("DOMContentLoaded", function () {
 
-function getSequence() {
-    const input = document.getElementById("dnaSequence");
+    const dnaInput = document.getElementById("dnaSequence");
+    const analyzeBtn = document.getElementById("analyzeButton");
+    const sampleBtn = document.getElementById("sampleButton");
+    const clearBtn = document.getElementById("clearButton");
 
-    if (!input) return "";
+    const sampleDNA =
+        "ATGTAGCTTACCCCTTAGACCTTTTTGAAGAAGGTTCTGTTACTAACATGTTTACTTCCATTGTGGGTAA";
 
-    return input.value.replace(/\s+/g, "").toUpperCase();
-}
+    // ANALYZE BUTTON
+    analyzeBtn.addEventListener("click", function () {
 
+        let sequence = dnaInput.value
+            .toUpperCase()
+            .replace(/\s/g, "");
 
-// ANALYZE BUTTON
-function analyzeDNA() {
+        if (sequence.length === 0) {
+            alert("Please enter a DNA sequence.");
+            return;
+        }
 
-    const input = document.getElementById("dnaSequence");
-    const result = document.getElementById("result");
+        if (!/^[ATGC]+$/.test(sequence)) {
+            alert("Only A, T, G and C are allowed.");
+            return;
+        }
 
-    if (!input || !result) return;
+        let A = 0;
+        let T = 0;
+        let G = 0;
+        let C = 0;
 
-    const sequence = getSequence();
+        for (let i = 0; i < sequence.length; i++) {
 
-    if (sequence === "") {
-        result.innerHTML = "<p>Please enter a DNA sequence.</p>";
-        return;
-    }
+            if (sequence[i] === "A") A++;
+            if (sequence[i] === "T") T++;
+            if (sequence[i] === "G") G++;
+            if (sequence[i] === "C") C++;
+        }
 
-    if (!/^[ATGC]+$/.test(sequence)) {
-        result.innerHTML =
-            "<p style='color:red;'>Invalid DNA sequence! Use only A, T, G and C.</p>";
-        return;
-    }
+        let length = sequence.length;
 
-    const length = sequence.length;
+        let gc = ((G + C) / length) * 100;
+        let at = ((A + T) / length) * 100;
 
-    const A = (sequence.match(/A/g) || []).length;
-    const T = (sequence.match(/T/g) || []).length;
-    const G = (sequence.match(/G/g) || []).length;
-    const C = (sequence.match(/C/g) || []).length;
+        document.getElementById("sequenceLength").textContent = length;
+        document.getElementById("gcContent").textContent =
+            gc.toFixed(2) + "%";
 
-    const gc = ((G + C) / length) * 100;
-    const at = ((A + T) / length) * 100;
+        document.getElementById("atContent").textContent =
+            at.toFixed(2) + "%";
 
-    result.innerHTML = `
-        <h3>Analysis Result</h3>
+        if (gc < 40) {
+            document.getElementById("gcCategory").textContent = "Low";
+        }
+        else if (gc <= 60) {
+            document.getElementById("gcCategory").textContent = "Moderate";
+        }
+        else {
+            document.getElementById("gcCategory").textContent = "High";
+        }
 
-        <p><strong>Sequence Length:</strong> ${length}</p>
+        document.getElementById("aCount").textContent = A;
+        document.getElementById("tCount").textContent = T;
+        document.getElementById("gCount").textContent = G;
+        document.getElementById("cCount").textContent = C;
 
-        <p><strong>GC Content:</strong> ${gc.toFixed(2)}%</p>
+        document.getElementById("resultStatus").textContent =
+            "Analysis Complete";
 
-        <p><strong>AT Content:</strong> ${at.toFixed(2)}%</p>
+        // Reverse Complement
+        let complement = "";
 
-        <hr>
+        for (let i = sequence.length - 1; i >= 0; i--) {
 
-        <p><strong>Adenine (A):</strong> ${A}</p>
-        <p><strong>Thymine (T):</strong> ${T}</p>
-        <p><strong>Guanine (G):</strong> ${G}</p>
-        <p><strong>Cytosine (C):</strong> ${C}</p>
+            if (sequence[i] === "A") complement += "T";
+            if (sequence[i] === "T") complement += "A";
+            if (sequence[i] === "G") complement += "C";
+            if (sequence[i] === "C") complement += "G";
+        }
 
-        <h3>Reverse Complement</h3>
-
-        <p>${getReverseComplement(sequence)}</p>
-    `;
-}
-
-
-// SAMPLE BUTTON
-function sampleDNA() {
-
-    const input = document.getElementById("dnaSequence");
-
-    if (!input) return;
-
-    input.value =
-        "ATGCGTACCGTAGCTAGCTAGGCTAACGTTAGCGATCGATCGGATCC";
-}
-
-
-// CLEAR BUTTON
-function clearDNA() {
-
-    const input = document.getElementById("dnaSequence");
-    const result = document.getElementById("result");
-
-    if (input) {
-        input.value = "";
-    }
-
-    if (result) {
-        result.innerHTML =
-            "<p>Enter a DNA sequence and click Analyze.</p>";
-    }
-}
+        document.getElementById("reverseComplement").textContent =
+            complement;
+    });
 
 
-// REVERSE COMPLEMENT
-function getReverseComplement(sequence) {
+    // SAMPLE BUTTON
+    sampleBtn.addEventListener("click", function () {
 
-    const complement = {
-        A: "T",
-        T: "A",
-        G: "C",
-        C: "G"
-    };
+        dnaInput.value = sampleDNA;
 
-    return sequence
-        .split("")
-        .reverse()
-        .map(base => complement[base])
-        .join("");
-}
+    });
+
+
+    // CLEAR BUTTON
+    clearBtn.addEventListener("click", function () {
+
+        dnaInput.value = "";
+
+        document.getElementById("sequenceLength").textContent = "—";
+        document.getElementById("gcContent").textContent = "—";
+        document.getElementById("atContent").textContent = "—";
+        document.getElementById("gcCategory").textContent = "—";
+
+        document.getElementById("aCount").textContent = "0";
+        document.getElementById("tCount").textContent = "0";
+        document.getElementById("gCount").textContent = "0";
+        document.getElementById("cCount").textContent = "0";
+
+        document.getElementById("reverseComplement").textContent =
+            "Your result will appear here.";
+
+        document.getElementById("resultStatus").textContent =
+            "Waiting for sequence";
+
+    });
+
+});
