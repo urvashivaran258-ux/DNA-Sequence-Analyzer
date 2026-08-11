@@ -464,34 +464,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const feedbackForm = document.getElementById("feedbackForm");
+// ===== FEEDBACK FORM =====
 
-if (feedbackForm) {
+document.addEventListener("DOMContentLoaded", function () {
 
-    feedbackForm.addEventListener("submit", function(event) {
+    const feedbackForm = document.getElementById("feedbackForm");
+
+    if (!feedbackForm) {
+        return;
+    }
+
+    feedbackForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
         const name = document.getElementById("feedbackName").value.trim();
         const rating = document.getElementById("rating").value;
         const feedback = document.getElementById("feedbackText").value.trim();
-
         const message = document.getElementById("feedbackMessage");
 
         if (name === "" || rating === "" || feedback === "") {
             message.textContent = "Please fill all fields.";
+            message.style.color = "red";
             return;
         }
 
         message.textContent =
-            "Thank you " + name + "! Your feedback has been submitted successfully.";
+            "Thank you " + name  + "! Your feedback has been submitted successfully.";
 
+        message.style.color = "green";
+        message.style.fontWeight = "bold";
+
+        // Form clear થશે, પણ message રહેશે
         feedbackForm.reset();
+
     });
-}
 
-const feedbackForm = document.getElementById("feedbackForm");
-
-if (feedbackForm) {
-    // ...
-}
+});
