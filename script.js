@@ -463,3 +463,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+const feedbackForm = document.getElementById("feedbackForm");
+
+if (feedbackForm) {
+
+    feedbackForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("feedbackName").value.trim();
+        const rating = document.getElementById("rating").value;
+        const feedback = document.getElementById("feedbackText").value.trim();
+
+        const message = document.getElementById("feedbackMessage");
+
+        if (name === "" || rating === "" || feedback === "") {
+            message.textContent = "Please fill all fields.";
+            return;
+        }
+
+        message.textContent =
+            "Thank you " + name + "! Your feedback has been submitted successfully.";
+
+        feedbackForm.reset();
+    });
+}
